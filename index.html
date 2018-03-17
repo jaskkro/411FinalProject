@@ -1,0 +1,79 @@
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Jacob P Fodor | IST 411 Project Proposal</span></strong></p>
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Realtime Collaborative Meme Studio</span></strong></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">&nbsp;</span></strong></p>
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Project Description</span></strong></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">I am proposing the development of a platform where anonymous users can come together to create memes, or other art from a blank canvas, collaboratively. I am proposing to facilitate this in a round-robin style, where users take turns making changes until the party of (2-4) individuals has agreed they are finished, and the product may be saved or added to a main gallery.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">&nbsp;</span></p>
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Project Design</span></strong></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Technologies</span></strong></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">My intended foundation for this project is a server built with Spring MVC, in addition to a database be responsible for storing both finalized and raw images from a curated collection. These raw images will provide the initial </span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&ldquo;</span><span style="font-size: 12.0pt; line-height: 107%;">canvas</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rdquo;</span><span style="font-size: 12.0pt; line-height: 107%;"> for users to play with and make changes to. The finalized images will have tags and other information regarding their creation. Due to the small size of most images used for creating memes, I believe storing them in SQL will be faster than leaving them in the filesystem.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">Actual alterations to the canvas or images will require the use of a few libraries. Currently, I am examining using Java 2D graphics for making painted or shape changes to a canvas or image. This should be simple and freeform enough to implement. I also have some experience working with OpenCV, and intend to use it to apply filters and other effects to the collaborative products. Using this framework to create some presets for the users utilized through the UI should be both fast and effective.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">For the interface of my application, I intend to use Bootstrap as the foundation. Bootstrap provides many components already stylized and very customizable. Using it should enable me to facilitate all of the interface elements I need, and produce a clean &amp; modern interface.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">As for the actual collaboration process, much of this will inevitably be worked out on my own. I don</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rsquo;</span><span style="font-size: 12.0pt; line-height: 107%;">t see a need to find software or some other workaround for setting up the creation session</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rsquo;</span><span style="font-size: 12.0pt; line-height: 107%;">s mechanics.</span></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Use Cases</span></strong></p>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">View created images in a gallery</span>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Clicking on an image enlarges it, focuses, and presents to the user additional information such as creation date, tags, and download options.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Search for images</span>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Search the entire gallery of images by their tags, or the date that they were created. This will not navigate the user from the main page, but will filter the images shown.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Creation session</span>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Session begins 30 seconds after two users have queued for a session</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Users can vote whether they would like a random image or a blank canvas, </span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&ldquo;</span><span style="font-size: 12.0pt; line-height: 107%;">coin flip</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rdquo;</span><span style="font-size: 12.0pt; line-height: 107%;"> for a tie</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Users will have ~15 seconds in a round-robin cycle to make a single alteration to the canvas</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Session will end when:</span>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">60 seconds after a single person indicates they are finished</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Immediately following a turn where all users have indicated they are finished</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">One person remains in the session</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Once completed, users will be prompted to add 1-2 tags (optional) to the image, giving an opportunity to add a signature or an identifying keyword if they</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rsquo;</span><span style="font-size: 12.0pt; line-height: 107%;">d like to find it in the gallery later</span></li>
+</ul>
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Checkpoints</span></strong></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Checkpoint #1</span></strong></p>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Server should be configured and setup</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">SQL DB architecture should be planned, and created</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Gallery screen should be created with one or several </span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&ldquo;</span><span style="font-size: 12.0pt; line-height: 107%;">dummy</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rdquo;</span><span style="font-size: 12.0pt; line-height: 107%;"> images proving it is interfaced with DB</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Interfaces (button/field) for queuing up for a session and for searching gallery should be present but not functional</span></li>
+</ul>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Checkpoint #2</span></strong></p>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Users should be able to queue for an anonymous creation session</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Structure and turn system for the session should be implemented so that users can see an image, turns tick by, and a session can be completed (no editing)</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">User tagging system following session completion</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Images should save to DB</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Users return to gallery following a session ending</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Frameworks for editing should be decided and be included in the project, though not necessary implemented yet</span></li>
+</ul>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Checkpoint #3</span></strong></p>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Users should be able to search/filter the gallery by tags</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">During sessions, users should now have the ability to use <em>at least:</em></span>
+<ul>
+<li><span style="font-size: 12.0pt; line-height: 107%;">One drawing tool</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">One text tool</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Three filters</span></li>
+</ul>
+</li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">Image should be saved and refreshed for all users after each turn</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">System for voting on a blank canvas or random image implemented</span></li>
+<li><span style="font-size: 12.0pt; line-height: 107%;">DB populated with raw sample images</span></li>
+</ul>
+<p><strong><span style="font-size: 14.0pt; line-height: 107%;">Justification</span></strong></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Novelty</span></strong></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">Memes have a notorious reputation, and are sometimes as polarizing for people as politics. Regardless, their prevalence on today</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rsquo;</span><span style="font-size: 12.0pt; line-height: 107%;">s internet is indisputable. They are all over our Facebook and Instagram feeds, and indeed nearly every corner in between.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">So often, however, these memes are created in a vacuum, by a single individual. For those who do enjoy memes, this is a satisfying and adequate way to consume them. I would like to argue that there is even more novelty to be had by stepping out of this isolation and passive process, by providing an anonymous opportunity for people to create something new together. By removing any noise or fluff and providing a streamlined creation process, my hope is that users will find ways of expressing themselves and perhaps even communicating in a fun and fast-paced environment.</span></p>
+<p><strong><span style="font-size: 12.0pt; line-height: 107%;">Complexity</span></strong></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">This project will be challenging because I am proposing to create a turn-based session environment that will have multiple users interfacing with the same canvas object. This will require me to build skills in structuring and regulating a session of this sort for multiple users. It will also require me to use some powerful frameworks, like Java 2D and OpenCV to do some customized and very specific tasks. Combining this with regulating the product throughout the session I would believe is an ambitious undertaking.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">Additionally, I will have to support the session system with an adequate interface so that users can actually complete my use cases. This will require me to use an industry web tool like Bootstrap to create something far more complex than any templates likely available.</span></p>
+<p><span style="font-size: 12.0pt; line-height: 107%;">Finally, even if the context or </span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&ldquo;</span><span style="font-size: 12.0pt; line-height: 107%;">flavor</span><span style="font-size: 12.0pt; line-height: 107%; font-family: 'Times New Roman',serif;">&rdquo;</span><span style="font-size: 12.0pt; line-height: 107%;"> of memes is not your forte or interest, I believe this project has the potential to be enjoyed by a wide variety of users, while also demonstrating significant programming/technical proficiency.</span></p>
