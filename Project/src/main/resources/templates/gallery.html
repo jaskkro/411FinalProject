@@ -1,0 +1,142 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+<script src="/jquery-3.1.1.slim.min.js"></script>
+<script src="/tether.min.js"></script>
+<script src="/bootstrap.min.js"></script>
+<style>
+    img {
+        width:100%;
+    }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 8 8px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1200px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+body { 
+    padding-bottom: 70px; 
+}
+</style>
+<link href="/bootstrap.min.css" rel="stylesheet"></link>
+<link href="/navbar-top-fixed.css" rel="stylesheet"></link>
+<link rel="stylesheet" href="../static/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="../static/navbar-top-fixed.css" type="text/css">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+<link href="css/1-col-portfolio.css" rel="stylesheet"></link>
+</link>
+</head>
+<body>
+
+	<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/">The Meme-Maker 8000</a>
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/gallery">The Gallery<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link" href="/gallery">About</a></li>
+			</ul>
+
+		</div>
+                
+                <div class="input-group">
+                    <input type="text" class="form-control"></input>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Search Gallery</button>
+                    </span>
+                </div> 
+                
+	</nav>
+    
+        <div class="jumbotron">
+            <h1>Welcome to Meme-Maker 8000!</h1>
+            <p>Meme-Maker is an anonymous platform for creating memes with other people in real time. Feel free to browse the gallery, or get creating!</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Queue for Session</a></p>
+        </div>
+    
+        <!-- Temporary gallery demonstrating layout-->
+        <div class="row">
+            <div class="column">
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/217/729/f9a.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/219/133/078.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/266/104/1b7.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/257/369/39a.jpg"></img>
+            </div>
+            <div class="column">
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/222/984/bbf.png"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/221/679/2c8.png"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/268/179/23f"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/221/330/2ae.jpg"></img>
+            </div>
+            <div class="column">
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/217/729/f9a.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/219/133/078.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/266/104/1b7.jpg"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/257/369/39a.jpg"></img>
+            </div>
+            <div class="column">
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/222/984/bbf.png"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/221/679/2c8.png"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/268/179/23f"></img>
+                <img src="http://i0.kym-cdn.com/photos/images/original/001/221/330/2ae.jpg"></img>
+            </div>
+        </div>
+
+    
+    
+        <!-- Use this when ultimately pulling images from server code
+	<div th:each="file : ${files}">
+		<div class="gallery">
+			<a target="_blank" th:href="${file}"> <img th:src="${file}" height="200" />
+			</a>
+			<div>
+				<table>
+					<input type="text" th:value="*{file}" name="text" readonly="true" />
+				</table>
+			</div>
+		</div>
+	</div>
+        -->
+
+</body>
+<footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">The Pennsylvania State University | College of Information Sciences and Technology</p>
+      </div>
+    </footer>
+</html>
