@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
+    public static SessionManager sessionManager = new SessionManager();
+    
 	public static void main(String[] args) {
             SpringApplication.run(Application.class, args);
 	}
