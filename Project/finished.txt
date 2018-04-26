@@ -1,0 +1,25 @@
+[ {
+  "name" : "src/main/resources/static/finished/finished1524774358512.jpg",
+  "tag0" : "olives",
+  "tag1" : "pickles",
+  "tag2" : "poop",
+  "tag3" : "onions"
+}, {
+  "name" : "src/main/resources/static/finished/finished1524776073774.jpg",
+  "tag0" : "bacon",
+  "tag1" : "onions",
+  "tag2" : "garbage",
+  "tag3" : "pickles"
+}, {
+  "name" : "src/main/resources/static/finished/finished1524777626354.jpg",
+  "tag0" : "bacon",
+  "tag1" : "onions",
+  "tag2" : "olives",
+  "tag3" : "onions"
+}, {
+  "name" : "src/main/resources/static/finished/finished1524777704502.jpg",
+  "tag0" : "garbage",
+  "tag1" : "pickles",
+  "tag2" : "olives",
+  "tag3" : "marshmallow"
+} ]

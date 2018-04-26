@@ -1,25 +1,22 @@
 package Main;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Set;
+import java.io.IOException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
 
     public static SessionManager sessionManager = new SessionManager();
+    public static FinishedImageList finishedImages = new FinishedImageList();
+    public static CleanImageList cleanImages = new CleanImageList();
     
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+            cleanImages = cleanImages.readJSONFromFile("clean.txt");
+            finishedImages = finishedImages.readJSONFromFile("finished.txt");
             SpringApplication.run(Application.class, args);
 	}
-
-	@Bean
-	Path path(){
-            return Paths.get("/data/finished-images");
-	}
+        
 	
 }

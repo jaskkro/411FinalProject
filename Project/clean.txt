@@ -1,0 +1,11 @@
+[ {
+  "name" : "src/main/resources/static/clean/bad-luck-brian.jpg"
+}, {
+  "name" : "src/main/resources/static/clean/joseph.jpg"
+}, {
+  "name" : "src/main/resources/static/clean/success-kid.jpg"
+}, {
+  "name" : "src/main/resources/static/clean/think.jpg"
+}, {
+  "name" : "src/main/resources/static/clean/willy-wonka.jpg"
+} ]

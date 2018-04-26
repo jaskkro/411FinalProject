@@ -5,6 +5,14 @@
  */
 package Main;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+
 /**
  *
  * @author Big Bertha
@@ -21,14 +29,18 @@ public class SessionModel {
     
     private int turnCount = 0;
     
+    private CleanImage original;
     private FinishedImage canvas;
     
     //Setup new session with unique identifiers
-    public SessionModel() {
+    public SessionModel() throws IOException {
         sessionID = 100 + sessionCount;
         sessionCount +=1;
         clientOneID = sessionID+10000;
         clientTwoID = sessionID+20000;
+        canvas = new FinishedImage("src/main/resources/static/finished/finished"+System.currentTimeMillis()+".jpg");
+        original = Application.cleanImages.getRandomImage();       
+        Files.copy(Paths.get(original.getName()), Paths.get(canvas.getName()), StandardCopyOption.REPLACE_EXISTING);
     }
     
     //Returns an unassigned client ID
@@ -86,7 +98,7 @@ public class SessionModel {
                     incrementTurn();
                     startSession();
                 }
-            }, 15000);
+            }, 10000);
         }
         else
             turnCount = 100;
@@ -95,6 +107,20 @@ public class SessionModel {
     //Verify if a session has ticked through to completion
     public boolean isComplete() {
         return(turnCount == 100);
+    }
+    
+    //Add tags to finished image
+    public void addTags(TagSet tags) {
+        canvas.addTag(tags.getTag1());
+        canvas.addTag(tags.getTag2());
+    }
+
+    public int getTagCount() {
+        return canvas.getTagCount();
+    }
+
+    public FinishedImage getCanvas() {
+        return canvas;
     }
     
     

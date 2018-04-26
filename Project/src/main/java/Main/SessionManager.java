@@ -5,6 +5,7 @@
  */
 package Main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ public class SessionManager {
     }
     
     //Load a new session to queue
-    public SessionModel launchNewSession() {
+    public SessionModel launchNewSession() throws IOException {
         pendingSession = new SessionModel();
         return pendingSession;
     }
@@ -77,5 +78,37 @@ public class SessionManager {
             }
         }
         return true;
+    }
+
+    public boolean addTags(String userid, TagSet tags) {
+        for (int i = 0; i < currentSessions.size(); i++) {
+            if (currentSessions.get(i).containsUser(userid)) {
+                SessionModel check = currentSessions.get(i);
+                check.addTags(tags);
+                if (check.getTagCount() > 3)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public FinishedImage getFinishedSessionImage(String userid) {
+        for (int i = 0; i < currentSessions.size(); i++) {
+            if (currentSessions.get(i).containsUser(userid)) {
+                SessionModel check = currentSessions.get(i);
+                return(check.getCanvas());
+            }
+        }
+        return null;
+    }
+
+    public String getCanvasByID(String userid) {
+        for (int i = 0; i < currentSessions.size(); i++) {
+            if (currentSessions.get(i).containsUser(userid)) {
+                SessionModel check = currentSessions.get(i);
+                return(check.getCanvas().getName());
+            }
+        }
+        return null;
     }
 }

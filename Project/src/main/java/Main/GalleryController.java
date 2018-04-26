@@ -1,7 +1,5 @@
 package Main;
 
-import java.nio.file.Path;
-import java.security.Principal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GalleryController {
 
-    private final Path rootLocation;
-    private final ImageRepository imageRepository;
-
-	public GalleryController(Path rootLocation, ImageRepository imageRepository) {
-            this.rootLocation = rootLocation;
-            this.imageRepository = imageRepository;
+	public GalleryController() {
 	}
 
 	@GetMapping("/")
@@ -25,6 +18,8 @@ public class GalleryController {
         
         @GetMapping("/gallery")
 	public String loadGallery(Model model) throws Exception {
+            String population = Application.finishedImages.getGalleryHTML("");
+            model.addAttribute("pop", population);
             return "gallery";
 	}
 

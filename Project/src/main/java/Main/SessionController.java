@@ -1,5 +1,8 @@
 package Main;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SessionController {
-
-
-	public SessionController() {
+        
+	public SessionController() throws IOException {
 	}
 
 	@GetMapping("/start-session")
@@ -46,6 +48,7 @@ public class SessionController {
             String sessid = "";
             String turn = "";
             String message = "";
+            String canvas = "";
             
             
             Cookie[] cookies = request.getCookies();
@@ -65,6 +68,10 @@ public class SessionController {
             if (sessionid > 0) {
                 sessionStatus = "Session in progress!";
                 sessid = sessionid.toString();
+                canvas = Application.sessionManager.getCanvasByID(userid);
+                canvas = canvas.substring(26);
+                //canvas = new File(canvas).getAbsolutePath();
+                System.out.println("URL: " + canvas);
                 //Determine if session is over
                 boolean finished = Application.sessionManager.checkSessionComplete(userid);
                 
@@ -93,6 +100,7 @@ public class SessionController {
             }
             
             //Attatch model fields
+            model.addAttribute("canvas", canvas);
             model.addAttribute("sessionStatus", sessionStatus);
             model.addAttribute("userID", usrid);
             model.addAttribute("sessionID", sessid);
@@ -105,17 +113,30 @@ public class SessionController {
         
         @GetMapping("/session-tagging")
         public String finishedSession(Model model, HttpServletRequest request, @CookieValue("userID") String userid) {
+            String canvas;
+            canvas = Application.sessionManager.getCanvasByID(userid);
+            canvas = canvas.substring(26);
+            
             String sessionStatus = "Session Complete!";
             String message = "You may add tags to your creation now.";
             model.addAttribute("sessionStatus", sessionStatus);
             model.addAttribute("descriptionMessage", message);
             model.addAttribute("tags", new TagSet());
+            model.addAttribute("canvas", canvas);
             return "session-tagging";
         }
         
         @PostMapping("/session-tagging")
-        public String greetingSubmit(@ModelAttribute TagSet tags) {
+        public String greetingSubmit(@ModelAttribute TagSet tags, @CookieValue("userID") String userid) throws IOException {
             //Process tags & save image
+            boolean finishedTagging = Application.sessionManager.addTags(userid, tags);
+            if (finishedTagging) {
+                System.out.println("Adding finished image to repo");
+                Application.finishedImages.addImage(Application.sessionManager.getFinishedSessionImage(userid));
+                System.out.println("Saving repo to file");
+                Application.finishedImages.saveJSONToFile(Application.finishedImages.serializeAsJSON(), "finished.txt");
+            }
+            
             return "redirect:/gallery";
     }
 }
