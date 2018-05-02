@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -86,25 +87,22 @@ public class FinishedImageList {
         return toReturn;
     }
     
-    public String getGalleryHTML(String filter) {
-        String toReturn = "";
-        if(finishedImages.size() > 0) {
-            toReturn = "<div class=\"row\">";
-            for (int i = 0; i < finishedImages.size(); i++) {
-                if (i%4==0) {
-                    toReturn += "<div class=\"column\">";
+    public ArrayList getGalleryHTML(String filter) {
+        ArrayList<String> toReturn = new ArrayList<>();
+        
+        if (finishedImages.size() > 0) {
+            for(int i = 0; i < finishedImages.size(); i++) {
+                FinishedImage temp = (FinishedImage) finishedImages.get(i);
+                if (!filter.contentEquals("")) {
+                    if (temp.checkTag(filter))
+                        toReturn.add(temp.getName().substring(26));
                 }
-                FinishedImage prep = (FinishedImage) finishedImages.get(i);
-                String prepName = prep.getName();
-                prepName = prepName.substring(26);
-                toReturn += "<img th:src=\"@{"+prepName+"}\" height=\"250\"/></img>";
-                if (i%4==3) {
-                    toReturn += "</div>";
-                }         
+                else
+                    toReturn.add(temp.getName().substring(26));
             }
-            toReturn += "</div>";          
         }
-       return toReturn; 
+        Collections.reverse(toReturn);
+        return toReturn; 
     }
     
 }

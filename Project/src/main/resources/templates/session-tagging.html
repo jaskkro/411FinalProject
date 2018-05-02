@@ -7,10 +7,7 @@
 <script src="/tether.min.js"></script>
 <script src="/bootstrap.min.js"></script>
 <style>
-    img {
-        width:100%;
-    }
-.row {
+row {
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
@@ -56,6 +53,26 @@ body {
 </link>
 </head>
 
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/">The Meme-Maker 8000</a>
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/gallery">The Gallery<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link" href="/gallery">About</a></li>
+			</ul>
+
+		</div>
+                
+               
+                
+	</nav>
 
 <body>
 <tr>
@@ -69,6 +86,6 @@ body {
         <p>Tag 2: <input type="text" th:field="*{tag2}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-<img src="http://i0.kym-cdn.com/photos/images/original/001/217/729/f9a.jpg"></img>
+<div><img th:src="@{${canvas}}" height="50%" width="50%"/></div>
 </body>
 </html>

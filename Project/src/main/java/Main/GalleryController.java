@@ -1,12 +1,18 @@
 package Main;
 
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
 public class GalleryController {
+    
+    String search = "";
 
 	public GalleryController() {
 	}
@@ -18,9 +24,20 @@ public class GalleryController {
         
         @GetMapping("/gallery")
 	public String loadGallery(Model model) throws Exception {
-            String population = Application.finishedImages.getGalleryHTML("");
-            model.addAttribute("pop", population);
+            List<String> files = Application.finishedImages.getGalleryHTML("");
+            model.addAttribute("files", files);
+            model.addAttribute("search", this.search);
             return "gallery";
 	}
+        
+        @PostMapping("/gallery")
+        public String filterGallery(Model model, @RequestParam String search) throws Exception {
+            this.search = search;
+            System.out.println(this.search);
+            List<String> files = Application.finishedImages.getGalleryHTML(this.search);
+            model.addAttribute("files", files);
+            model.addAttribute("search", this.search);            
+            return "gallery";
+        }
 
 }

@@ -1,8 +1,6 @@
 package Main;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -49,6 +48,7 @@ public class SessionController {
             String turn = "";
             String message = "";
             String canvas = "";
+            String line = "";
             
             
             Cookie[] cookies = request.getCookies();
@@ -82,15 +82,12 @@ public class SessionController {
                     //My turn
                     if (myTurn) {
                         turn = "It's your turn.";
-                        message = "You have 15 seconds to make a change to the meme..";
+                        message = "You have 20 seconds to make a change to the meme..";
                     }//Not my turn
                     else {
                         turn = "It's not your turn..";
                         message = "Please wait for the other user to finish their turn.";
                     }
-
-                    //Process a turn's requested action if valid submitter
-                    //(Checkpoint 3)
                     
                 }//Else session is completed..
                 else {
@@ -106,9 +103,39 @@ public class SessionController {
             model.addAttribute("sessionID", sessid);
             model.addAttribute("turnMessage", turn);
             model.addAttribute("descriptionMessage", message);
+            model.addAttribute("line", line);
         
             
             return "started-session";
+        }
+        
+        @PostMapping("/started-session")
+        public String pushChange(Model model, @RequestParam String line, @CookieValue("userID") String userid) throws IOException {
+            String usrid = userid;
+            String canvas = "";
+            Integer sessionid = Application.sessionManager.checkSessionByUser(userid);            
+            
+            //Session underway
+            if (sessionid > 0) {
+                canvas = Application.sessionManager.getCanvasByID(userid);
+                //canvas = canvas.substring(26);
+                //canvas = new File(canvas).getAbsolutePath();
+                System.out.println("Edit URL: " + canvas);
+                //Determine if session is over
+                boolean finished = Application.sessionManager.checkSessionComplete(userid);
+                
+                if(!finished) {
+                    //Determine who's turn it is
+                    boolean myTurn = Application.sessionManager.checkTurn(sessionid, userid);
+
+                    //My turn
+                    if (myTurn) {
+                        ImageEditor.addStringToImage(line, canvas);
+                    }                    
+                }
+            }
+            
+            return "redirect:/started-session";
         }
         
         @GetMapping("/session-tagging")

@@ -7,9 +7,7 @@
 <script src="/tether.min.js"></script>
 <script src="/bootstrap.min.js"></script>
 <style>
-    img {
-        width:100%;
-    }
+    
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -75,10 +73,12 @@ body {
 		</div>
                 
                 <div class="input-group">
-                    <input type="text" class="form-control"></input>
+                    <form action="#" th:action="@{/gallery}" method="post">
+                    <input type="text" name="search" witdth="400px"></input>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Search Gallery</button>
+                        <button class="btn btn-default" type="submit">Search Gallery</button>
                     </span>
+                    </form>
                 </div> 
                 
 	</nav>
@@ -90,7 +90,7 @@ body {
         </div>
     
         
-        <div th:utext="${pop}"></div>
+        <!--<div th:utext="${pop}"></div>-->
     
     
     
@@ -123,20 +123,19 @@ body {
         </div>
         -->
     
-    
-        <!-- Use this when ultimately pulling images from server code
+
 	<div th:each="file : ${files}">
 		<div class="gallery">
-			<a target="_blank" th:href="${file}"> <img th:src="${file}" height="200" />
+			<a target="_blank" th:href="${file}"> <img th:src="${file}"/>
 			</a>
 			<div>
 				<table>
-					<input type="text" th:value="*{file}" name="text" readonly="true" />
+					<!--<input type="text" th:value="*{file}" name="text" readonly="true" height="50%" width="50%"/>-->
 				</table>
 			</div>
 		</div>
 	</div>
-        -->
+        
 
 </body>
 </html>

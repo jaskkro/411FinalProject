@@ -98,7 +98,7 @@ public class SessionModel {
                     incrementTurn();
                     startSession();
                 }
-            }, 10000);
+            }, 21000);
         }
         else
             turnCount = 100;

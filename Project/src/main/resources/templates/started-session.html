@@ -3,20 +3,22 @@
 <meta charset="utf-8"></meta>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=yes"></meta>
-<meta http-equiv="refresh" content="5"></meta>
+<meta http-equiv="refresh" content="7"></meta>
 <script src="/jquery-3.1.1.slim.min.js"></script>
 <script src="/tether.min.js"></script>
 <script src="/bootstrap.min.js"></script>
 <style>
-    img {
-        width:100%;
-    }
-.row {
+row {
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
 }
-
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #292b2c;
+}
 /* Create four equal columns that sits next to each other */
 .column {
   flex: 25%;
@@ -57,6 +59,26 @@ body {
 </link>
 </head>
 
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/">The Meme-Maker 8000</a>
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/gallery">The Gallery<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link" href="/gallery">About</a></li>
+			</ul>
+
+		</div>
+                
+               
+                
+	</nav>
 
 <body>
 <tr>
@@ -64,9 +86,23 @@ body {
 <p>UserID: <td th:text="${userID}"></td></p>
 <p>SessionID: <td th:text="${sessionID}"></td></p>
 <td th:text="${turnMessage}"></td>
-<td th:text="${descriptionMessage}"></td>
+<h4><td th:text="${descriptionMessage}"></td></h4>
 </tr>
-<div><img th:src="@{${canvas}}"/></div>
+<div><img th:src="@{${canvas}}" height="50%" width="50%"/></div>
+
+<footer class="footer">
+    <div class="container">
+        <form action="#" th:action="@{/started-session}" method="post">
+            <input type="text" name="line"></input>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Add to meme!</button>
+                </span>
+        </form>
+        
+    </div>
+</footer>
+
+
 
 </body>
 </html>
